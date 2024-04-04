@@ -1,4 +1,6 @@
 import { MatchScoresStore } from "./store/game_scores"
+import { ActiveMatch } from "./types/Match"
+
 
 export default class Scoreboard {
 
@@ -19,9 +21,34 @@ export default class Scoreboard {
     }
 
     updateScore(id: number, home: number, away: number) {
+        const newMatchData = {
+            ...this.matches.getMatch(id),
+            home_score: home,
+            away_score: away,
+        } as ActiveMatch;
 
+        return this.matches.updateMatch(newMatchData);
     }
 
+    incrementScore(id: number, team: 'home' | 'away') {
+        const matchData = this.matches.getMatch(id) as ActiveMatch;
+        const targetProperty = `${team}_score` as keyof ActiveMatch;
+        const newMatchData = {
+            ...matchData,
+            [targetProperty]: matchData[targetProperty] as number + 1
+        }
+        return this.matches.updateMatch(newMatchData);
+    }
+
+    decrementScore(id: number, team: 'home' | 'away') {
+        const matchData = this.matches.getMatch(id) as ActiveMatch;
+        const targetProperty = `${team}_score` as keyof ActiveMatch;
+        const newMatchData = {
+            ...matchData,
+            [targetProperty]: matchData[targetProperty] as number - 1
+        }
+        return this.matches.updateMatch(newMatchData);
+    }
 
     getMatch(id: number) {
         return this.matches.getMatch(id)
