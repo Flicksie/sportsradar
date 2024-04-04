@@ -26,4 +26,13 @@ export class MatchScoresStore {
         return newData;
     }
 
+    public deleteMatch(id: number) {
+        if (!this.ongoingMatches.has(id)) throw new Error(`Match with ID ${id} could not be found.`);
+
+        this.ongoingMatches.delete(id);
+    }
+
+    public getAllMatches() {
+        return Array.from(this.ongoingMatches.values())
+    }
 }
