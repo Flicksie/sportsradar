@@ -15,6 +15,13 @@ describe('Scoreboard', () => {
         expect(home_score).toBe(0);
     });
 
+    it('update score', () => {
+        const game = scoreboard.startGame('Home', 'Away');
+        scoreboard.updateScore(game.id, 1, 2);
+        expect(scoreboard.getMatch(game.id)).toHaveProperty("home_score", 1);
+        expect(scoreboard.getMatch(game.id)).toHaveProperty("away_score", 2);
+      });
+
     it('should get a summary of games in progress ordered by their total score', () => {
         const game1 = scoreboard.startGame('Home1', 'Away1');
         scoreboard.updateScore(game1.id, 1, 2);
