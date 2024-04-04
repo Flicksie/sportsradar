@@ -62,6 +62,10 @@ export default class Scoreboard {
         return this.matches.getMatch(id)
     }
 
+    endMatch(id: number) {
+        return this.matches.deleteMatch(id)
+    }
+
     getSummary() {
         const fnMatchSort = (a: ActiveMatch, b: ActiveMatch) => {
             const a_sum = a.home_score + a.away_score;
