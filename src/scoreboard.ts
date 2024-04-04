@@ -1,13 +1,12 @@
 import { MatchScoresStore } from "./store/game_scores"
 import { ActiveMatch } from "./types/Match"
 
-
 export default class Scoreboard {
 
     private matches: MatchScoresStore;
 
-    constructor(matchesStore: MatchScoresStore) {
-        this.matches = matchesStore;
+    constructor(matchesStore?: MatchScoresStore) {
+        this.matches = matchesStore || new MatchScoresStore;
     }
 
     startGame(home: string, away: string) {
@@ -62,7 +61,6 @@ export default class Scoreboard {
     getMatch(id: number) {
         return this.matches.getMatch(id)
     }
-
 
     getSummary() {
         const fnMatchSort = (a: ActiveMatch, b: ActiveMatch) => {
