@@ -1,4 +1,4 @@
-import { MatchScoresStore } from "./store/game_scores"
+import { MatchScoresStore } from "./store/match_scores"
 import { ActiveMatch } from "./types/Match"
 
 export default class Scoreboard {
@@ -9,7 +9,7 @@ export default class Scoreboard {
         this.matches = matchesStore || new MatchScoresStore;
     }
 
-    startGame(home: string, away: string) {
+    startMatch(home: string, away: string) {
         if (!home || !away) {
             throw new Error('Both home and away teams must be provided');
         }

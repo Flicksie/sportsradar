@@ -7,32 +7,32 @@ describe('Scoreboard', () => {
         scoreboard = new Scoreboard();
     });
 
-    it('new game score is 0 - 0', () => {
-        const current_game = scoreboard.startGame('Home', 'Away');
-        const { away_score, home_score } = current_game;
+    it('new match score is 0 - 0', () => {
+        const current_match = scoreboard.startMatch('Home', 'Away');
+        const { away_score, home_score } = current_match;
 
         expect(away_score).toBe(0);
         expect(home_score).toBe(0);
     });
 
     it('update score', () => {
-        const game = scoreboard.startGame('Home', 'Away');
-        scoreboard.updateScore(game.id, 1, 2);
-        expect(scoreboard.getMatch(game.id)).toHaveProperty("home_score", 1);
-        expect(scoreboard.getMatch(game.id)).toHaveProperty("away_score", 2);
+        const match = scoreboard.startMatch('Home', 'Away');
+        scoreboard.updateScore(match.id, 1, 2);
+        expect(scoreboard.getMatch(match.id)).toHaveProperty("home_score", 1);
+        expect(scoreboard.getMatch(match.id)).toHaveProperty("away_score", 2);
       });
 
-    it('should get a summary of games in progress ordered by their total score', () => {
-        const game1 = scoreboard.startGame('Home1', 'Away1');
-        scoreboard.updateScore(game1.id, 1, 2);
+    it('should get a summary of matchs in progress ordered by their total score', () => {
+        const match1 = scoreboard.startMatch('Home1', 'Away1');
+        scoreboard.updateScore(match1.id, 1, 2);
 
-        const game2 = scoreboard.startGame('Home2', 'Away2');
-        scoreboard.updateScore(game2.id, 3, 4);
+        const match2 = scoreboard.startMatch('Home2', 'Away2');
+        scoreboard.updateScore(match2.id, 3, 4);
 
-        const game3 = scoreboard.startGame('Home3', 'Away3');
-        scoreboard.updateScore(game3.id, 1, 2);
+        const match3 = scoreboard.startMatch('Home3', 'Away3');
+        scoreboard.updateScore(match3.id, 1, 2);
 
-        const summary_ids = scoreboard.getSummary().map(game => game.id);
+        const summary_ids = scoreboard.getSummary().map(match => match.id);
 
 
         expect(summary_ids).toEqual([2, 3, 1]);
@@ -41,18 +41,18 @@ describe('Scoreboard', () => {
 
     it('example scenario', () => {
 
-        const game1 = scoreboard.startGame('Mexico','Canada');
-        scoreboard.updateScore(game1.id, 0, 5);
-        const game2 = scoreboard.startGame('Spain','Brazil');
-        scoreboard.updateScore(game2.id, 10, 2);
-        const game3 = scoreboard.startGame('Germany','France');
-        scoreboard.updateScore(game3.id, 2, 2);
-        const game4 = scoreboard.startGame('Uruguay','Italy');
-        scoreboard.updateScore(game4.id, 6, 6);
-        const game5 = scoreboard.startGame('Argentina','Australia');
-        scoreboard.updateScore(game5.id, 3, 1);
+        const match1 = scoreboard.startMatch('Mexico','Canada');
+        scoreboard.updateScore(match1.id, 0, 5);
+        const match2 = scoreboard.startMatch('Spain','Brazil');
+        scoreboard.updateScore(match2.id, 10, 2);
+        const match3 = scoreboard.startMatch('Germany','France');
+        scoreboard.updateScore(match3.id, 2, 2);
+        const match4 = scoreboard.startMatch('Uruguay','Italy');
+        scoreboard.updateScore(match4.id, 6, 6);
+        const match5 = scoreboard.startMatch('Argentina','Australia');
+        scoreboard.updateScore(match5.id, 3, 1);
 
-        const summary_ids = scoreboard.getSummary().map(game => game.id);
+        const summary_ids = scoreboard.getSummary().map(match => match.id);
 
         expect(summary_ids).toEqual([4,2,1,5,3]);
 
