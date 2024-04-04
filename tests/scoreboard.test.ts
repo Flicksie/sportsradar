@@ -45,7 +45,7 @@ describe('Scoreboard', () => {
 
         scoreboard.endMatch(match.id);
 
-        expect(!scoreboard.getMatch(match.id)).toBe(true);
+        expect(() => scoreboard.getMatch(match.id)).toThrow();
     })
 
 
