@@ -56,7 +56,18 @@ export default class Scoreboard {
 
 
     getSummary() {
+        const fnMatchSort = (a: ActiveMatch, b: ActiveMatch) => {
+            const a_sum = a.home_score + a.away_score;
+            const b_sum = b.home_score + b.away_score;
 
+            return (
+                b_sum - a_sum
+                || b.start_time.getTime() - a.start_time.getTime()
+                || b.id - a.id
+            )
+        }
+
+        return this.matches.getAllMatches().sort(fnMatchSort);
     }
 
 }
