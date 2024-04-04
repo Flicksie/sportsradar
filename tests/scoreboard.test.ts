@@ -1,10 +1,11 @@
 import  Scoreboard  from '../src/scoreboard';
+import { MatchScoresStore } from '../src/store/game_scores';
 
 describe('Scoreboard', () => {
     let scoreboard: Scoreboard;
 
     beforeEach(() => {
-        scoreboard = new Scoreboard();
+        scoreboard = new Scoreboard( new MatchScoresStore() );
     });
 
     it('new game score is 0 - 0', () => {

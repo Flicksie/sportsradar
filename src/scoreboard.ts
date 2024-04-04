@@ -6,8 +6,8 @@ export default class Scoreboard {
 
     private matches: MatchScoresStore;
 
-    constructor() {
-        this.matches = new MatchScoresStore();
+    constructor(matchesStore: MatchScoresStore) {
+        this.matches = matchesStore;
     }
 
     startGame(home: string, away: string) {
