@@ -38,6 +38,16 @@ describe('Scoreboard', () => {
         expect(summary_ids).toEqual([2, 3, 1]);
       });
 
+    it('finish ongoing match', () => {
+        scoreboard.startMatch('Home2', 'Away2');
+        const match = scoreboard.startMatch('Home1', 'Away1');
+        scoreboard.startMatch('Home3', 'Away3');
+
+        scoreboard.endMatch(match.id);
+
+        expect(!scoreboard.getMatch(match.id)).toBe(true);
+    })
+
 
     it('example scenario', () => {
 
