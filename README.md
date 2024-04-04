@@ -1,9 +1,9 @@
 # Simple Scoreboard Mini Lib
 
-[x] Start match with 0 - 0 score as default
-[x] Update score receives a pair of absolute scores
-[x] Finish ongoing match
-[x] Get summary of matches in progress sorted by: score total > most recently started
+- [x] Start match with 0 - 0 score as default
+- [x] Update score receives a pair of absolute scores
+- [x] Finish ongoing match
+- [x] Get summary of matches in progress sorted by: score total > most recently started
 
 Example scenario covered in the tests
 
