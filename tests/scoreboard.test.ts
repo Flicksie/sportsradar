@@ -1,4 +1,4 @@
-import  Scoreboard  from '../src/scoreboard';
+import  Scoreboard  from'../src/scoreboard';
 
 describe('Scoreboard', () => {
     let scoreboard: Scoreboard;
@@ -38,4 +38,26 @@ describe('Scoreboard', () => {
         expect(summary_ids).toEqual([2, 3, 1]);
       });
 
+
+    it('example scenario', () => {
+
+        const game1 = scoreboard.startGame('Mexico','Canada');
+        scoreboard.updateScore(game1.id, 0, 5);
+        const game2 = scoreboard.startGame('Spain','Brazil');
+        scoreboard.updateScore(game2.id, 10, 2);
+        const game3 = scoreboard.startGame('Germany','France');
+        scoreboard.updateScore(game3.id, 2, 2);
+        const game4 = scoreboard.startGame('Uruguay','Italy');
+        scoreboard.updateScore(game4.id, 6, 6);
+        const game5 = scoreboard.startGame('Argentina','Australia');
+        scoreboard.updateScore(game5.id, 3, 1);
+
+        const summary_ids = scoreboard.getSummary().map(game => game.id);
+
+        expect(summary_ids).toEqual([4,2,1,5,3]);
+
+    })
+
 });
+
+
