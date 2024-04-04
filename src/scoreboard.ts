@@ -11,6 +11,10 @@ export default class Scoreboard {
     }
 
     startGame(home: string, away: string) {
+        if (!home || !away) {
+            throw new Error('Both home and away teams must be provided');
+        }
+
         return this.matches.registerMatch({
             home_team: home,
             home_score: 0,
@@ -21,6 +25,11 @@ export default class Scoreboard {
     }
 
     updateScore(id: number, home: number, away: number) {
+        const match = this.matches.getMatch(id);
+        if (!match) {
+            throw new Error(`Match with ID ${id} could not be found.`);
+        }
+
         const newMatchData = {
             ...this.matches.getMatch(id),
             home_score: home,
